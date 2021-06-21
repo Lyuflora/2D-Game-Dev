@@ -1,46 +1,47 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// 初始点数记录在PlayerPref中
+// Skill points 场景读取5个属性点数，分配至下属的4个技能
 public class SkillManager : MonoBehaviour
-{
-    public TMP_Text[] m_AttribPointsText;
-
+{  
+    static public SkillManager m_Instance;
+    
+    // 暂时使用的class，仅用于初始点数
     [Serializable]
-    public struct Skill
+    public class attribute
     {
-        public string name;
+        public AttributeType name;
         public int points;
+        public TMP_Text text;
     }
+    public List<attribute> m_InitAttributes = new List<attribute>();
 
-    [Serializable]
-    public struct Attribute
-    {
-        // 属性名，该属性下的技能点数，下属细分技能（4项）
-        public string name;
-        public int points;
-        public Skill[] skills;
+    private void Awake()
+    {        
+       // DontDestroyOnLoad(gameObject);
+        m_Instance = this;
     }
-
     private void Start()
     {
-        m_AttribPointsText[0].text = PlayerPrefs.GetInt("Attribute_Body").ToString();
-        m_AttribPointsText[1].text = PlayerPrefs.GetInt("Attribute_Willpower").ToString();
-        m_AttribPointsText[2].text = PlayerPrefs.GetInt("Attribute_Mind").ToString();
-        m_AttribPointsText[3].text = PlayerPrefs.GetInt("Attribute_Knowledge").ToString();
-        m_AttribPointsText[4].text = PlayerPrefs.GetInt("Attribute_Practical").ToString();
-    }
-
-
-    void OnSkillPointAddButtonClick(int skillID, int num)
-    {
+        // 初始化各个属性的总点数显示
+        LoadAttributePoints();
 
     }
 
-    void OnSkillPointDropButtonClick(int skillID, int num)
+    void LoadAttributePoints()
     {
-
+        m_InitAttributes[0].points = PlayerPrefs.GetInt("Attribute_Body");
+        m_InitAttributes[0].text.text = PlayerPrefs.GetInt("Attribute_Body").ToString();
+        m_InitAttributes[1].points = PlayerPrefs.GetInt("Attribute_Willpower");
+        m_InitAttributes[1].text.text = PlayerPrefs.GetInt("Attribute_Willpower").ToString();
+        m_InitAttributes[2].points = PlayerPrefs.GetInt("Attribute_Mind");
+        m_InitAttributes[2].text.text = PlayerPrefs.GetInt("Attribute_Mind").ToString();
+        m_InitAttributes[3].points = PlayerPrefs.GetInt("Attribute_Knowledge");
+        m_InitAttributes[3].text.text = PlayerPrefs.GetInt("Attribute_Knowledge").ToString();
+        m_InitAttributes[4].points = PlayerPrefs.GetInt("Attribute_Practical");
+        m_InitAttributes[4].text.text = PlayerPrefs.GetInt("Attribute_Practical").ToString();
     }
 }

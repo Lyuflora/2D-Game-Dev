@@ -33,11 +33,6 @@ public class CharacterCreator : MonoBehaviour
         UpdateCharacterDisplay();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void UpdateCharacterDisplay()
     {
@@ -77,12 +72,12 @@ public class CharacterCreator : MonoBehaviour
     // Save data
     public void OnConfirmButtonClick()
     {
-        // name and career choise
+        // career choice
         PlayerPrefs.SetInt("SelectedCharacterIndex", selectedIndex);
+        // name
         PlayerPrefs.SetString("Name", inputName.text);
-        //PlayerPrefs.SetInt("Age", int.Parse(inputAge.text));
 
-        // skills
+        // allocate points ¡ú attributes: Body, Willpower, Mind, Knowledge, Practical
         PlayerPrefs.SetInt("Attribute_Body", AttribManager.m_Instance.m_Attribs[0].points);
         PlayerPrefs.SetInt("Attribute_Willpower", AttribManager.m_Instance.m_Attribs[1].points);
         PlayerPrefs.SetInt("Attribute_Mind", AttribManager.m_Instance.m_Attribs[2].points);

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-
+// Character Creator中 5个属性点数分配，并储存在PlayerPref中
 public class AttribManager : MonoBehaviour
 {
 
@@ -15,9 +15,10 @@ public class AttribManager : MonoBehaviour
         public string name;
         public int points;
     }
-    public Attribute[] m_Attribs;  // 5种属性（各自有4个细分的能力）
+    public Attribute[] m_Attribs; 
 
     static public AttribManager m_Instance;
+
     [SerializeField]
     private int m_TotalPoints = 15;  // 初始总点数：15
     [SerializeField]
