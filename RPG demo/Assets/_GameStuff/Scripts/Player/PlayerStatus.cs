@@ -75,7 +75,7 @@ public class PlayerStatus : MonoBehaviour
             // 判断是否低于下限
             int usedPoint = SumPoint(attrib);
             Debug.Log(usedPoint);
-            if (usedPoint > 0)
+            if (usedPoint > 0 && SD.m_Skill.m_Points>0)
             {
                 SD.m_Skill.m_Points--;
             }

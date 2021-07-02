@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SkillDisplay : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public class SkillDisplay : MonoBehaviour
     //public TMP_Text skillDescription;
     public Sprite m_BtSprite;
     public TMP_Text m_SkillPointNum;
-
+    BaseEventData m_BaseEvent;
 
     [SerializeField]
     private PlayerStatus PS = PlayerStatus.m_Instance;
@@ -39,5 +37,27 @@ public class SkillDisplay : MonoBehaviour
     {
         PlayerStatus.m_Instance.DropInitPointOnSkill(this.gameObject);
         m_SkillPointNum.text = m_Skill.m_Points.ToString();
+    }
+
+    void Update()
+    {
+        //Check if the GameObject is being highlighted
+        // to do
+        //if (IsHighlighted(m_BaseEvent) == true)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.UpArrow))
+        //    {
+        //        OnAddPointButtonClick();
+        //    }
+        //    if (Input.GetKeyDown(KeyCode.DownArrow))
+        //    {
+        //        OnDropPointButtonClick();
+        //    }
+        //}
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        
     }
 }

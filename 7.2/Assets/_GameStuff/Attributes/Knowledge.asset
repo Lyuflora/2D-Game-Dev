@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8eb181108af1a48b6374221b4b1090, type: 3}
+  m_Name: Knowledge
+  m_EditorClassIdentifier: 
+  m_type: 3
+  m_Description: 
+  m_CurrentPoint: 5
+  m_Icon: {fileID: 0}
+  m_Skills:
+  - {fileID: 11400000, guid: 5f430042411a37549ade5e1c4e2907f5, type: 2}
+  - {fileID: 11400000, guid: 77b1ff5f5d7c78449b5e884d0afe0449, type: 2}
+  - {fileID: 11400000, guid: 51712bcecae1a1e4281cb1d64f5d54db, type: 2}
+  - {fileID: 11400000, guid: a6ecec185bc24d841a12d62ba0b31379, type: 2}

@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2168ecbb9255354fa4d5f48e7bd5da7, type: 3}
   m_Name: Story
   m_EditorClassIdentifier: 
-  description: 
-  type: 11
-  icon: {fileID: 0}
+  m_Description: 
+  m_Type: 11
+  m_Genre: 1
+  m_SkillTexture: {fileID: 0}
+  m_Points: 0
+  m_AffectedAttrib: {fileID: 11400000, guid: 24c7ed1668d07dd43a4d8a5b39fc6a9b, type: 2}

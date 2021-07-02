@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2168ecbb9255354fa4d5f48e7bd5da7, type: 3}
   m_Name: Research
   m_EditorClassIdentifier: 
-  description: 
-  thumbnail: {fileID: 0}
+  m_Description: 
+  m_Type: 0
+  m_Genre: 0
+  m_SkillTexture: {fileID: 0}
+  m_Points: 0
+  m_AffectedAttrib: {fileID: 11400000, guid: f5d294641f805f347a9b399f38fde050, type: 2}

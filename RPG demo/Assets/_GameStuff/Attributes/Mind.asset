@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_type: 2
   m_Description: 
-  m_CurrentPoint: 4
+  m_CurrentPoint: 3
   m_Icon: {fileID: 0}
   m_Skills:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 558a637c64f92644e8ee4c0a7b0fd597, type: 2}
+  - {fileID: 11400000, guid: 12faa760bb39e8d4e9a8118ab87e7680, type: 2}
+  - {fileID: 11400000, guid: 2bc3c5ec034b1f54389057b7ef3d65fe, type: 2}
+  - {fileID: 11400000, guid: 443c41d8e2c173044be84d4cf1868ab2, type: 2}
