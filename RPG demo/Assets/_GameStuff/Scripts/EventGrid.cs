@@ -11,11 +11,32 @@ namespace Gmds
         public List<GameObject> m_AvailableEventBts;    // 加载显示的事件按钮
         public EventButton[] m_EventButtons;    //  按钮的外壳,todo
         public GameObject CalenderParent;   //   事件按钮的parent
+
+        public GameObject m_DevEvParent;
+        public GameObject m_PracEvParent;
+        public GameObject m_SocialEvParent;
+        public GameObject m_RestEvParent;
+
+        public void ReloadCalender()
+        {
+            CalenderParent = this.gameObject;
+
+            m_DevEvParent = GameObject.Find("Canvas/Calendar/Schedule/Devs");
+            m_PracEvParent = GameObject.Find("Canvas/Calendar/Schedule/Practices");
+            m_SocialEvParent = GameObject.Find("Canvas/Calendar/Schedule/Socials");
+            m_RestEvParent = GameObject.Find("Canvas/Calendar/Schedule/Rest");
+        }
+
         private void Awake()
         {
             m_Instance = this;
             DontDestroyOnLoad(this);
-            CalenderParent = this.gameObject;
+            ReloadCalender();
+        }
+
+        private void Start()
+        {
+            
         }
 
         public void ReloadEventButton()
@@ -28,11 +49,28 @@ namespace Gmds
             // load event array
             for (int i = 0; i < m_AvailableEventBts.Count; i++)
             {
-                //m_AvailableEventBts[i].Getcomponent<>().
-
-
                 var newItem = Instantiate(m_AvailableEventBts[i], new Vector3(x + Xanchor, y - Yoffset * (i - 1), 0), Quaternion.identity);
-                newItem.transform.parent = CalenderParent.transform;
+                var type = newItem.GetComponent<EventButton>().m_Type;
+                Transform itemParent = CalenderParent.transform;
+                if (type==EventGenre.BaseDev|| type==EventGenre.Dev)
+                {
+                    itemParent = m_DevEvParent.transform;
+                }else if(type == EventGenre.Practice)
+                {
+                    itemParent = m_PracEvParent.transform;
+                }else if (type == EventGenre.Social)
+                {
+                    itemParent = m_SocialEvParent.transform;
+                }else if (type == EventGenre.Rest)
+                {
+                    itemParent = m_RestEvParent.transform;
+                }
+
+                if (itemParent)
+                {
+                    newItem.transform.parent = itemParent;
+                }
+                newItem.transform.position = new Vector3(x + Xanchor+ itemParent.transform.position.x, y - Yoffset * (i - 1), 0);
             }
         }
 

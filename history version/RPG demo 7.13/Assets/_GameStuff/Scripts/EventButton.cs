@@ -10,6 +10,7 @@ namespace Gmds
     public class EventButton : MonoBehaviour
     {
         public TMP_Text m_Text;
+        public EventGenre m_Type;
 
         public void Awake()
         {

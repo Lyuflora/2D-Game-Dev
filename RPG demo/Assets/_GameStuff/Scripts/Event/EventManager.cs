@@ -36,6 +36,7 @@ namespace Gmds
         // todo
         public void RefreshEvent()
         {
+            // todo 事件变得不可用
             EventGrid.m_Instance.m_AvailableEventBts = EventCatalog.m_Instance.m_EventButtonList;
         }
 
@@ -90,11 +91,11 @@ namespace Gmds
             }
             else if (CalendarManager.m_Instance.GetWeekStatus() == WeekStatus.End)
             {
-
                 Debug.Log("End->Init 开始下一周");
                 CalendarManager.m_Instance.SetWeekStatus(WeekStatus.Init);
                 PracticeManager.m_Instance.GeneratePractices(); // 生成本周的练习事件
                 m_CalenderParent.SetActive(true);
+                EventGrid.m_Instance.ReloadCalender();
                 NextWeek();
             }
 
@@ -120,7 +121,10 @@ namespace Gmds
         public void ClearOldEventButtons()
         {
             Debug.Log("开始清除上周事务");
-            PanelManager.m_Instance.ClearOldChilds(m_CalenderParent);
+            PanelManager.m_Instance.ClearOldChilds(EventGrid.m_Instance.m_DevEvParent);
+            PanelManager.m_Instance.ClearOldChilds(EventGrid.m_Instance.m_PracEvParent);
+            PanelManager.m_Instance.ClearOldChilds(EventGrid.m_Instance.m_SocialEvParent);
+            PanelManager.m_Instance.ClearOldChilds(EventGrid.m_Instance.m_RestEvParent);
         }
 
         public void NextWeek()

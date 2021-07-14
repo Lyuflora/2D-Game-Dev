@@ -73,7 +73,7 @@ namespace Gmds
         public void NextDay()
         {
             m_DayNum += 1;
-            if (m_DayNum == 32)
+            if (m_DayNum == 31)
             {
                 m_DayNum = 1;
                 m_MonthNum += 1;

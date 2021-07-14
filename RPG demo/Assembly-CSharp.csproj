@@ -97,8 +97,8 @@
     <Compile Include="Assets\_GameStuff\Scripts\GameStatus.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\Player\Skill.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\Event\BaseEvent.cs" />
-    <Compile Include="Assets\_GameStuff\Scripts\Player\PlayerStatus.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\DialogueDescriptor.cs" />
+    <Compile Include="Assets\_GameStuff\Scripts\Player\PlayerStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Text: {fileID: 8570815066047372313}
+  m_Type: 4
   m_Event: {fileID: 11400000, guid: 8f52549a07068f24fb6231a4c52b6bcd, type: 2}
 --- !u!1 &8570815066047372315
 GameObject:

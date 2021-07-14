@@ -11,6 +11,7 @@ namespace Gmds
         public GameObject m_PopupPanel;
         public GameObject m_FriendsPanel;
         public GameObject m_TechsPanel;
+        public GameObject m_ProjPanel;
         private void Awake()
         {
             m_Instance = this;
@@ -35,27 +36,47 @@ namespace Gmds
             }
         }
 
+        public void OpenFriendsPanel()
+        {
+            FriendManager.m_Instance.ReloadFriendPanel();
+            OpenPanel(PanelManager.m_Instance.m_FriendsPanel);
+        }
+        public void OpenPopupPanel()
+        {
+            OpenPanel(PanelManager.m_Instance.m_PopupPanel);
+        }
+        public void OpenProjPanel()
+        {
+            OpenPanel(PanelManager.m_Instance.m_ProjPanel);
+        }
+        public void OpenTechPanel()
+        {
+            PracticeManager.m_Instance.ReloadTechPanel();
+            Debug.Log(App.Instance.m_Manifest.m_Techs.Length);
+            for (int i = 0; i < App.Instance.m_Manifest.m_Techs.Length; i++)
+            {
+                Debug.Log(App.Instance.m_Manifest.m_Techs[i].name);
+            }
+            OpenPanel(PanelManager.m_Instance.m_TechsPanel);
+        }
+
         public void Update()
         {
             if (Input.GetKeyDown(KeyCode.O))
             {
-                FriendManager.m_Instance.ReloadFriendPanel();
-                OpenPanel(PanelManager.m_Instance.m_FriendsPanel);
+                OpenFriendsPanel();
             }
-
             if (Input.GetKeyDown(KeyCode.P))
             {
-                OpenPanel(PanelManager.m_Instance.m_PopupPanel);
+                OpenPopupPanel();
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                OpenProjPanel();
             }
             if (Input.GetKeyDown(KeyCode.I))
             {
-                PracticeManager.m_Instance.ReloadTechPanel();
-                Debug.Log(App.Instance.m_Manifest.m_Techs.Length);
-                for (int i = 0; i < App.Instance.m_Manifest.m_Techs.Length; i++)
-                {
-                    Debug.Log(App.Instance.m_Manifest.m_Techs[i].name);
-                }
-                OpenPanel(PanelManager.m_Instance.m_TechsPanel);
+                OpenTechPanel();
             }
         }
         public void ClearOldChilds(GameObject parent)

@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Text: {fileID: 8570815066047372313}
+  m_Type: 2
   m_Event: {fileID: 11400000, guid: 134ffc99f016de7448980d3ec7d96664, type: 2}
 --- !u!114 &8412786748499243932
 MonoBehaviour:
