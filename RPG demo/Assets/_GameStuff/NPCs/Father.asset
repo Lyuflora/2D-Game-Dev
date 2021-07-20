@@ -19,8 +19,8 @@ MonoBehaviour:
   job: 1
   level: 2
   states:
-    Body: 3
-    Willpower: 5
-    Mind: 2
-    Knowledge: 4
-    Practical: 4
+    Body: 30
+    Willpower: 30
+    Mind: 30
+    Knowledge: 30
+    Practical: 30

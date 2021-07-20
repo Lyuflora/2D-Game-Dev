@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-using static Gmds.Date;
+using static Gmds.Day;
 
 namespace Gmds
 {
@@ -17,6 +17,9 @@ namespace Gmds
         public TMP_Text m_DayText;
         public TMP_Text m_MonthText;
 
+
+        [SerializeField]
+        public int m_WeekNum;
         [SerializeField]
         private int m_DayNum;
         [SerializeField]
@@ -29,6 +32,8 @@ namespace Gmds
         public Day[] m_Calender;
 
         public GameObject CalenderParent;
+
+        public int m_CurrentDay;
 
         [Header("Flowchart")]
         public Fungus.Flowchart m_EventFlowchart;
@@ -54,6 +59,7 @@ namespace Gmds
             m_MonthText = GameObject.Find("Canvas/Calendar/Date/MonthText").GetComponent<TMP_Text>();
             m_WeekText = GameObject.Find("Canvas/Calendar/Date/WeekText").GetComponent<TMP_Text>();
             m_WeekText.text = "Week 1";
+            m_WeekNum = 1;
             m_DayNum = 1;
             m_MonthNum = 9;
             m_DayText.text = "1";
@@ -72,29 +78,45 @@ namespace Gmds
 
         public void NextDay()
         {
+            // Update date text
             m_DayNum += 1;
             if (m_DayNum == 31)
             {
                 m_DayNum = 1;
                 m_MonthNum += 1;
             }
+            if (m_DayNum % 7 == 1)
+            {
+                m_WeekNum++;
+            }
             UpdateDateText();
+
             // 触发对话
-            StartDialogue(m_DayNum, m_MonthNum);
+            StartDialogue();
+        }
+        public int GetCurrentDayId()
+        {
+            m_CurrentDay = m_DayNum + (m_MonthNum - 9) * 30 - 1;
+            return m_CurrentDay;
         }
 
-        public void StartDialogue(int day, int month)
+        public void StartDialogue()
         {
             // 根据预设日程
             // 如果当天有固定事件，则触发
             // 如果没有，过
-            int dayId = day + (month - 9) * 30-1;
-            Debug.Log("Day " + day+" "+month+" "+dayId);
+            m_CurrentDay = GetCurrentDayId();
+            int dayId = m_CurrentDay;
+            Debug.Log("Day " + m_DayNum + " "+ m_MonthNum + " "+dayId);
             var today = m_Calender[dayId];
             if (today.GetDayStatus() == DayStatus.Scheduled)
             {
                 string dialog = today.m_Dialogues[0].m_BlockName;
                 m_EventFlowchart.ExecuteBlock(dialog);
+            }
+            else
+            {
+                return;
             }
             //    dialogue.m_Dialogue.ExecuteBlock(m_StartBlockName);
             //    //EventFlowchart.SetBooleanVariable("Show", true);   // 设置变量

@@ -9,7 +9,7 @@ namespace Gmds
     public class DialogueDescriptor : ScriptableObject
     {
         // 时间（月 日），对话flowchart
-        public int m_Id;
-        public string m_BlockName;
+        public string m_BlockName;  // 开启的对话对应的block
+        public Sprite m_CG;
     }
 }

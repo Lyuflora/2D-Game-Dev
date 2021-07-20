@@ -120,7 +120,7 @@ namespace Gmds {
 
     public enum NPCJob
     {
-        Designer = 1,
+        Designer = 0,
         Artist,
         Programmer,
     }
@@ -133,17 +133,43 @@ namespace Gmds {
 
     public enum DevType
     {
-        System = 1,
+        System = 0,
         Data, 
         Level,
         Story,
     }
-public class Date
+
+    // 玩家与NPC的开发阶段
+    public enum DevStage
+    {
+        Brewing=0,  //  酝酿
+        Prototype,  //  原型
+        iteration,  //  迭代
+        Polishing,  //  完善
+    }
+
+    public enum DayStatus
+    {
+        Scheduled,
+        Not,
+    }
+
+    [Serializable]
+    public class Day
 {
     int day;
     int month;
 
-    public Date(int d, int m)
+    [SerializeField] private DayStatus status;
+
+    [Header("Dialogue")]
+    public DialogueDescriptor[] m_Dialogues;
+
+    public DayStatus GetDayStatus()
+    {
+        return status;
+    }
+    public Day(int d, int m)
     {
         day = d;
         month = m;
@@ -158,28 +184,5 @@ public class Date
     {
         return month;
     }
-    public enum DayStatus
-    {
-        Scheduled,
-        Not,
-    }
-
-    [Serializable]
-    public class Day
-    {
-        public int day;
-        int month;
-        [SerializeField] private DayStatus status;
-
-        [Header("Dialogue")]
-        public DialogueDescriptor[] m_Dialogues;
-
-        public DayStatus GetDayStatus()
-        {
-            return status;
-        }
-    }
-
-
     }
 }

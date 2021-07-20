@@ -10,6 +10,7 @@ public class PracticeManager : MonoBehaviour
     public static PracticeManager m_Instance;
     public GameObject techObject;
     public GameObject m_TechsParent;
+    public int[] m_Exp = new int[12];
 
     private void Awake()
     {

@@ -18,6 +18,12 @@ namespace Gmds
         public GameObject CGImage;
         public GameObject m_CalenderParent;
 
+        [NonSerialized]
+        public int m_CurrentScheduleDay;
+
+        private int lastFreeDay;
+        private int toDay;
+        private int firstWeekDay;
 
         private void Awake()
         {
@@ -28,6 +34,7 @@ namespace Gmds
         private void Start()
         {
             RefreshEvent();
+            m_CurrentScheduleDay = 0;
             EventGrid.m_Instance.ReloadEventButton();
         }
 
@@ -45,30 +52,88 @@ namespace Gmds
             m_CGParent.SetActive(true);
         }
 
+        public void Test()
+        {
+            Debug.Log("----First Day Finished----");
+        }
+
         public void DisplayEventCG(Sprite cg)
         {
             CGImage.GetComponent<Image>().sprite = cg;
         }
 
-        public IEnumerator HandleEventArray()
+        // Flowchart 中调用当前天数的事件
+        public void CallHandleCurrentDay()
         {
-            //EventFlowchart.ExecuteBlock(blockName);
-            //EventFlowchart.SetBooleanVariable("Show", true);   // 设置变量
-            PanelManager.m_Instance.OpenPanel(PanelManager.m_Instance.m_PopupPanel);
-            // 逐事件行动
-            for (int i = 0; i < m_EventArray.Count; i++)
-            {
-                Debug.Log("第" + (i + 1) + "天");
-                PanelManager.m_Instance.RefreshPopup(PanelManager.m_Instance.m_PopupPanel, m_EventArray[i]);
-                
-                m_EventArray[i].HandleEvent();
-                StartCoroutine(ShowCG(i));
-                CalendarManager.m_Instance.NextDay();
-                yield return new WaitForSeconds(0.5f);
-
-            }
-            PanelManager.m_Instance.OpenPanel(PanelManager.m_Instance.m_PopupPanel);
+            CalendarManager.m_Instance.m_CurrentDay++;
+            Debug.Log("即将执行第" + CalendarManager.m_Instance.m_CurrentDay + "天");
+            HandleDay(CalendarManager.m_Instance.GetCurrentDayId());
         }
+        public void HandleDay(int i)
+        {
+            Debug.Log("第" + (i + 1) + "天");
+            if (CheckDayScheduled(i))
+            {
+                Debug.Log("今天按照预置日程执行");
+            }
+            else
+            {
+                PanelManager.m_Instance.RefreshPopup(PanelManager.m_Instance.m_PopupPanel, m_EventArray[i]);
+
+                m_EventArray[i].HandleEvent();
+                // StartCoroutine(ShowCG(i));
+                
+            }
+            CalendarManager.m_Instance.NextDay();
+
+        }
+
+        // 按钮-执行第一天（计算属性-显示对话）-Fungus call第二天（计算属性-显示对话）...
+        public void HandleFirstDay()
+        {
+            Debug.Log("第" + 1 + "天");
+            CalendarManager.m_Instance.m_CurrentDay = 1;
+            CalendarManager.m_Instance.StartDialogue();
+
+            if (m_EventArray[0])
+            {
+                m_EventArray[0].HandleEvent();
+                PanelManager.m_Instance.OpenPanel(PanelManager.m_Instance.m_PopupPanel);
+                PanelManager.m_Instance.RefreshPopup(PanelManager.m_Instance.m_PopupPanel, m_EventArray[0]);
+                Debug.Log("第" + toDay + "天CG");
+                ShowCG(m_EventArray[0].cg);
+            }
+            else
+            {
+                //ShowCG(CalendarManager.m_Instance.m_Calender[0].);
+            }
+
+
+            //StartCoroutine(ShowCG(0));
+            //CalendarManager.m_Instance.NextDay();
+        }
+
+        // 不用
+        //public IEnumerator HandleEventArray()
+        //{
+        //    //EventFlowchart.ExecuteBlock(blockName);
+        //    //EventFlowchart.SetBooleanVariable("Show", true);   // 设置变量
+
+        //    PanelManager.m_Instance.OpenPanel(PanelManager.m_Instance.m_PopupPanel);
+        //    // 逐事件行动
+        //    for (int i = 0; i < m_EventArray.Count; i++)
+        //    {
+        //        Debug.Log("第" + (i + 1) + "天");
+        //        PanelManager.m_Instance.RefreshPopup(PanelManager.m_Instance.m_PopupPanel, m_EventArray[i]);
+                
+        //        m_EventArray[i].HandleEvent();
+        //        StartCoroutine(ShowCG(i));
+        //        CalendarManager.m_Instance.NextDay();
+        //        yield return new WaitForSeconds(0.5f);
+
+        //    }
+        //    PanelManager.m_Instance.OpenPanel(PanelManager.m_Instance.m_PopupPanel);
+        //}
 
         public void UpdateWeekStatus()
         {
@@ -86,7 +151,9 @@ namespace Gmds
                 CalendarManager.m_Instance.SetWeekStatus(WeekStatus.During);
                 m_CGParent.SetActive(true);
                 m_CalenderParent.SetActive(false);
-                StartCoroutine(HandleEventArray());
+                // 开始第一天的日程。（通过fungus触发下一天）
+                HandleFirstDay();
+                //StartCoroutine(HandleEventArray());
                 Debug.Log("Init->During Finish Event Array");
             }
             else if (CalendarManager.m_Instance.GetWeekStatus() == WeekStatus.End)
@@ -96,21 +163,56 @@ namespace Gmds
                 PracticeManager.m_Instance.GeneratePractices(); // 生成本周的练习事件
                 m_CalenderParent.SetActive(true);
                 EventGrid.m_Instance.ReloadCalender();
+
+                int currentWeek = GetCurrentWeek();
+                // 定位到本周第一天（的序号）
+                firstWeekDay = toDay = ((int)DayOfWeek.Sunday)+ currentWeek * 7;
+                // 找到本周最后一个空闲天
+                lastFreeDay = GetLastFreeDayInWeek(currentWeek);
+
                 NextWeek();
             }
 
-
         }
-        public IEnumerator ShowCG(int num)
+        public bool CheckDayScheduled(int dayId)
         {
-            Debug.Log("第" + num + "个CG");
-            DisplayEventCG(m_EventArray[num].cg);
-            yield return new WaitForSeconds(1);
+            var isFree = CalendarManager.m_Instance.m_Calender[dayId].GetDayStatus();
+            if (isFree == DayStatus.Scheduled)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        // 找到本周最后一个空闲天，返回天序号
+        public int GetLastFreeDayInWeek(int week)
+        {
+            Debug.Log("Week: " + week);
+            int freeday = (week-1) * 7;
+            for (int i = 6; i >= 0; i--)
+            {
+                int dayId = (week - 1) * 7 + i;
+                if (!CheckDayScheduled(dayId))
+                {
+                    freeday = (week - 1) * 7 + i;
+                    break;
+                }
+            }
+            return freeday;
+        }
+
+        public void ShowCG(Sprite cg)
+        {
+            DisplayEventCG(cg);
+            //yield return new WaitForSeconds(1);
         }
 
         public void Day1()
         {
             Debug.Log("This is Day 1 Dialog----------");
+
         }
 
         public void Day2()
@@ -136,8 +238,44 @@ namespace Gmds
             CalendarManager.m_Instance.m_CalendarPanel.SetActive(true);
         }
 
+        private int GetCurrentWeek()
+        {
+            return CalendarManager.m_Instance.m_WeekNum;
+        }
+
+
         internal void AddEventToWishlist(GameObject gameObject)
         {
+            if (toDay >= firstWeekDay + 7)
+            {
+                return;
+            }
+            // 如果最后一个空闲天已经有日程规划
+            // 则不再通过用户点击添加事项
+            int w = GetCurrentWeek();
+            int d = GetLastFreeDayInWeek(w);
+
+            if (CheckDayScheduled(d))
+            {
+                return;
+            }
+
+            // 判断是否有预设的行动
+            // 如果有，则跳过，加入下一个最近的空闲天
+            while (CalendarManager.m_Instance.m_Calender[toDay].GetDayStatus() == DayStatus.Scheduled)
+            {
+                //加入空项
+                m_EventArray.Add(null);
+                // 跳转到下一天
+                toDay++;
+                if (toDay >= firstWeekDay + 7)
+                {
+                    return;
+                }
+
+            }
+
+
 
             // 日常行动
             if (gameObject.GetComponent<PracticeEventButton>())

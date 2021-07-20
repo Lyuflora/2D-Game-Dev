@@ -36,11 +36,11 @@ namespace Gmds
         }
         virtual public void HandleEvent()
         {
+            Debug.Log("Start Today's event...");
+
+            // 显示CG
             EventManager.m_Instance.DisplayEventCG(cg);
-
-
-            Debug.Log("doing...");
-            // 消耗
+            // 消耗资源
             PlayerStatus.m_Instance.GainLoseCoin(dCoin);
             // 收益属性
             PlayerStatus.m_Instance.GainLoseStrength(dStrength);
