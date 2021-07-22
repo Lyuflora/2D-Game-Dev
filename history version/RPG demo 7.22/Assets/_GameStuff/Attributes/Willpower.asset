@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8eb181108af1a48b6374221b4b1090, type: 3}
+  m_Name: Willpower
+  m_EditorClassIdentifier: 
+  m_type: 1
+  m_Description: 
+  m_CurrentPoint: 0
+  m_Icon: {fileID: 5775317125725358567, guid: fcd6f629d389aa9428a5224842045260, type: 3}
+  m_Skills:
+  - {fileID: 11400000, guid: 05f4040240a13fa489a0c74aeaa204d7, type: 2}
+  - {fileID: 11400000, guid: 9acd70e6afc98c04eb3cb1257c5eb75b, type: 2}
+  - {fileID: 11400000, guid: a1b7e16861e1c7e4a861a32290fc74bb, type: 2}
+  - {fileID: 11400000, guid: 5e44a628f4b2ff442837da0ade07cdfd, type: 2}
