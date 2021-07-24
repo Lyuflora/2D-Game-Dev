@@ -8,14 +8,12 @@ namespace Gmds
     [CreateAssetMenu(menuName = "gmds/Event/Create Practice Event")]
     public class PracticeEvent : DailyEvent
     {
-        [Header("练习")]
         [SerializeField]
         private int difficulty; // 练习项目难度（与积累exp相关）
         [SerializeField]
         private PlayerMode mode;    // 云玩或真玩
 
-        public PracticeType type;  //  氪金？
-        private int level;  // 花钱
+        private int level;  //  氪金？
 
         [SerializeField]
         private int tech_R_No = 0;  // 稀有技能序号
@@ -45,15 +43,16 @@ namespace Gmds
             probsArray[2] = 1 - 0 - prop_R;
 
             float result = Choose(probsArray);
-            PracticeManager.m_Instance.LearnTech(tech_N_No);    // 必学会
+            PracticeManager.m_Instance.LearnTech(tech_R_No);    // 必学会
             if (result == 1)
             {
                 Debug.Log("学会稀有技能");
-                PracticeManager.m_Instance.LearnTech(tech_R_No);
+                PracticeManager.m_Instance.LearnTech(tech_N_No);
             }
             else
             {
-                Debug.Log("稀有技能习得失败，只学会普通技能");  
+                Debug.Log("只学会普通技能");
+                    
             }
 
         }
@@ -96,10 +95,7 @@ namespace Gmds
             probsArray[3] = prop_3;
 
             int result = Choose(probsArray);
-
-            // for Debug
-            PracticeManager.m_Instance.LearnTech(tech_N_No);    // 必学会
-            //
+            PracticeManager.m_Instance.LearnTech(tech_R_No);    // 必学会
             if (result == 1)
             {
                 Debug.Log("+1");

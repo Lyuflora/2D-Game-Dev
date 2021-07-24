@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace Gmds{
@@ -12,9 +11,6 @@ public class PracticeManager : MonoBehaviour
     public GameObject techObject;
     public GameObject m_TechsParent;
     public int[] m_Exp = new int[12];
-
-
-
 
     private void Awake()
     {
@@ -37,7 +33,7 @@ public class PracticeManager : MonoBehaviour
 
     public void ReloadTechPanel()
     {
-        //ClearOldTechProfile();  // 清除原有的
+        ClearOldTechProfile();
         var rectTransform = techObject.GetComponent<RectTransform>();
         float yOffset = rectTransform.sizeDelta.y;
 
@@ -45,11 +41,9 @@ public class PracticeManager : MonoBehaviour
         float origionY = m_TechsParent.transform.position.y;
         for (int i = 0; i < m_TechAttained.Count; i++)
         {
-                //var p = Instantiate(techObject, new Vector3(origionX, origionY + yOffset * i, 0), Quaternion.identity);
-                //p.transform.parent = m_TechsParent.transform;
-                //p.GetComponent<TechProfile>().RefreshTech(m_TechAttained[i]);
-                int id = ((int)m_TechAttained[i].type);
-                m_TechsParent.transform.GetChild(id).gameObject.SetActive(true);
+            var p = Instantiate(techObject, new Vector3(origionX, origionY + yOffset * i, 0), Quaternion.identity);
+            p.transform.parent = m_TechsParent.transform;
+            p.GetComponent<TechProfile>().RefreshTech(m_TechAttained[i]);
         }
     }
     public void ClearOldTechProfile()

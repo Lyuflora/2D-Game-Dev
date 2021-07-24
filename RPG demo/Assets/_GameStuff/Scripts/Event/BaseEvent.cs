@@ -8,7 +8,7 @@ namespace Gmds
     public class BaseEvent : ScriptableObject
     {
         public EventGenre m_Genre;    // 可能是练习，休息，外出
-
+        public EventType m_Type;
         public Sprite cg;
         public Texture2D m_ButtonTexture;
 

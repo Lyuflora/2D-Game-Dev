@@ -326,6 +326,8 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
+"Assets/script/status.cs"
+"Assets/script/status1.cs"
 "Assets/_GameStuff/Scripts/App.cs"
 "Assets/_GameStuff/Scripts/CalendarManager.cs"
 "Assets/_GameStuff/Scripts/CameraMotor.cs"

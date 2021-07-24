@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameStatus : MonoBehaviour
 {
     // 项目属性（关卡/系统/数值/剧情）
-    public int[] m_GameFeatures = new int[4];
+    public int[] m_GameFeatures;
     // 重点指标
     public int[] m_PrimerFeatures;
 

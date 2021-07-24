@@ -7,7 +7,7 @@ namespace Gmds
     [CreateAssetMenu(menuName = "gmds/Event/Create Social Event")]
     public class SocialEvent : DailyEvent
     {
-        public SocialType m_Type;
+
         private void Awake()
         {
             base.Awake();

@@ -76,10 +76,9 @@ namespace Gmds
             m_weekStatus = s;
         }
 
-        public void NextDay()
+        public void NextDate()
         {
             // Update date text
-            CalendarManager.m_Instance.m_CurrentDay++;
             m_DayNum += 1;
             if (m_DayNum == 31)
             {
@@ -91,33 +90,32 @@ namespace Gmds
                 m_WeekNum++;
             }
             UpdateDateText();
-
-            // 触发对话
-            StartDialogue();
         }
         public int GetCurrentDayId()
         {
-            m_CurrentDay = m_DayNum + (m_MonthNum - 9) * 30 - 1;
+            m_CurrentDay = m_DayNum + (m_MonthNum - 9) * 30-1 ;
             return m_CurrentDay;
         }
 
-        public void StartDialogue()
+        public void StartDialogue(int dayId)
         {
             // 根据预设日程
-            // 如果当天有固定事件，则触发
-            // 如果没有，过
-            m_CurrentDay = GetCurrentDayId();
-            int dayId = m_CurrentDay;
+            // 仅当天有固定事件，触发
+
             Debug.Log("Day " + m_DayNum + " "+ m_MonthNum + " "+dayId);
             var today = m_Calender[dayId];
             if (today.GetDayStatus() == DayStatus.Scheduled)
             {
                 string dialog = today.m_Dialogues[0].m_BlockName;
                 m_EventFlowchart.ExecuteBlock(dialog);
+                // 最后一行为"CallHandleDay.."
             }
             else
             {
-                return;
+                // 通过代码调用
+                bool waitForClick = true;
+                EventManager.m_Instance.CallHandleCurrentDay();
+                
             }
             //    dialogue.m_Dialogue.ExecuteBlock(m_StartBlockName);
             //    //EventFlowchart.SetBooleanVariable("Show", true);   // 设置变量

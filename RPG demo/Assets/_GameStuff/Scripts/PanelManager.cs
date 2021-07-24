@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine.EventSystems;
 using UnityEngine;
 
 namespace Gmds
@@ -13,6 +12,7 @@ namespace Gmds
         public GameObject m_FriendsPanel;
         public GameObject m_TechsPanel;
         public GameObject m_ProjPanel;
+        public GameObject m_ProjInfoPanel;
 
         public TMP_Text m_EffectText;
         public TMP_Text m_RequirementText;
@@ -23,7 +23,10 @@ namespace Gmds
             Animator animator = m_FriendsPanel.GetComponent<Animator>();
             animator.SetBool("isOpen", false);
         }
-
+        private void Start()
+        {
+            
+        }
         public void RefreshPopup(GameObject Panel, BaseEvent rEvent)
         {
             string popupText = string.Format("Coin: {0:D}\nStrength: {1:D}\nMental: {2:D}\nStrengthExp: {3:D}\nMentalExp: {4:D}", rEvent.dCoin, rEvent.dStrength, rEvent.dMental, rEvent.dStrengthExp, rEvent.dMentalExp);
@@ -38,6 +41,12 @@ namespace Gmds
                 bool isOpen = animator.GetBool("isOpen");
                 animator.SetBool("isOpen", !isOpen);
             }
+        }
+
+        public void OpenProjInfoPanel()
+        {            
+            FriendManager.m_Instance.ReloadFriendInfoList();
+            OpenPanel(PanelManager.m_Instance.m_ProjInfoPanel);
         }
 
         public void OpenFriendsPanel()
@@ -67,16 +76,14 @@ namespace Gmds
 
         public void RefreshTechInfo(int techID)
         {
-            Debug.Log("Click tech button");
             Tech tech = App.Instance.m_Manifest.m_Techs[techID];
-            Debug.Log("—ßœ∞ºº ı£∫"+tech.name);
             m_EffectText.text = tech.effect;
-            m_RequirementText.text = tech.requirement;
-
+            m_RequirementText.text = tech.effect;
         }
 
         public void Update()
         {
+
             if (Input.GetKeyDown(KeyCode.O))
             {
                 OpenFriendsPanel();
@@ -93,6 +100,11 @@ namespace Gmds
             {
                 OpenTechPanel();
             }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                OpenProjInfoPanel();
+            }
+
         }
         public void ClearOldChilds(GameObject parent)
         {

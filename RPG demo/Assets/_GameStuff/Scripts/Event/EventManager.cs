@@ -62,31 +62,32 @@ namespace Gmds
             CGImage.GetComponent<Image>().sprite = cg;
         }
 
-        // Flowchart 中对话结束后调用
+        // 使用场景：Flowchart 中调用后一天的事件，在对话之后
+        // 功能：在仅有对话的预置日程天中，触发下一天日程
         public void CallHandleCurrentDay()
         {
-            // todo
-            // 判断是否是星期的最后一天
             CalendarManager.m_Instance.m_CurrentDay++;
             Debug.Log("即将执行第" + CalendarManager.m_Instance.m_CurrentDay + "天");
-            HandleDay(CalendarManager.m_Instance.GetCurrentDayId());
+            HandleDayEvent(CalendarManager.m_Instance.GetCurrentDayId());
         }
-        public void HandleDay(int i)
+        public void HandleDayEvent(int dayId)
         {
-            Debug.Log("第" + (i + 1) + "天");
-            if (CheckDayScheduled(i))
+            Debug.Log("第" + (dayId + 1) + "天");
+            if (CheckDayScheduled(dayId))
             {
                 Debug.Log("今天按照预置日程执行");
             }
             else
             {
-                PanelManager.m_Instance.RefreshPopup(PanelManager.m_Instance.m_PopupPanel, m_EventArray[i]);
-
-                m_EventArray[i].HandleEvent();
-                // StartCoroutine(ShowCG(i));
-                
+                PanelManager.m_Instance.RefreshPopup(PanelManager.m_Instance.m_PopupPanel, m_EventArray[dayId]);
+                PanelManager.m_Instance.OpenPanel(PanelManager.m_Instance.m_PopupPanel);
+                m_EventArray[dayId].HandleEvent();
+                ShowCG(m_EventArray[dayId].cg);
+                // StartCoroutine(ShowCG(i));    
             }
-            CalendarManager.m_Instance.NextDay();
+            CalendarManager.m_Instance.NextDate();  // Update date text
+            CalendarManager.m_Instance.StartDialogue(dayId);
+            
 
         }
 
@@ -94,26 +95,27 @@ namespace Gmds
         public void HandleFirstDay()
         {
             Debug.Log("第" + 1 + "天");
-            CalendarManager.m_Instance.m_CurrentDay = 1;
-            CalendarManager.m_Instance.StartDialogue();
+            CalendarManager.m_Instance.m_CurrentDay = 0;
+            HandleDayEvent(0);
 
-            if (m_EventArray[0])
-            {
-                // 非预置的日程
-                m_EventArray[0].HandleEvent();
-                PanelManager.m_Instance.OpenPanel(PanelManager.m_Instance.m_PopupPanel);
-                PanelManager.m_Instance.RefreshPopup(PanelManager.m_Instance.m_PopupPanel, m_EventArray[0]);
-                Debug.Log("第" + toDay + "天CG");
-                ShowCG(m_EventArray[0].cg);
-            }
-            else
-            {
+            //if (m_EventArray[0])
+            //{
+            //    // 无预置日程
+            //    HandleDayEvent(0);
+            //    //m_EventArray[0].HandleEvent();
+            //    //PanelManager.m_Instance.OpenPanel(PanelManager.m_Instance.m_PopupPanel);
+            //    //PanelManager.m_Instance.RefreshPopup(PanelManager.m_Instance.m_PopupPanel, m_EventArray[0]);    
+            //    //ShowCG(m_EventArray[0].cg);
+            //    Debug.Log("第" + toDay + "天CG");
+            //}
+            //else
+            //{  
+            //    // 更新日期
+            //    CalendarManager.m_Instance.NextDate();
                 
-            }
-
-
-            //StartCoroutine(ShowCG(0));
-            CalendarManager.m_Instance.NextDay();
+            //    // 处理对话
+            //    CalendarManager.m_Instance.StartDialogue(0);
+            //}
         }
 
         // 不用

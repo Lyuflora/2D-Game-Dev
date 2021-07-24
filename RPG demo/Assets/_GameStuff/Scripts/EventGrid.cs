@@ -46,7 +46,6 @@ namespace Gmds
             float Xanchor = 60f;
             float Yoffset = 40f;
 
-            // todo
             // load event array
             for (int i = 0; i < m_AvailableEventBts.Count; i++)
             {

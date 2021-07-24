@@ -20,11 +20,11 @@ namespace Gmds
             m_NameText.text = tech.name;
             m_LevelText.text = tech.level.ToString();
             m_Image.sprite = tech.icon;
-            if (tech.rare == TechRare.N)
+            if (tech.type == TechType.N)
             {
                 m_TypeText.text = "N";
             }
-            else if (tech.rare == TechRare.R)
+            else if (tech.type == TechType.R)
             {
                 m_TypeText.text = "R";
             }

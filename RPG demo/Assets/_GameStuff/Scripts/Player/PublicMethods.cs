@@ -77,34 +77,22 @@ namespace Gmds {
     }
 
 // 二级分类
-    public enum SocialType
+    public enum EventType
     {
         Bar=0,
         Gym,
         Exhibition,
-        // todo
         Practice,
         Rest,
         Research,
         Trainning,
         Communicate,
         Deadline,
-
-        None,
-    }
-
-    public enum PracticeType
-    {
-        Normal=0,
-        Money,
-    }
-
-    public enum DevType
-    {
-        Data=0,
+        Data,
         System,
         Level,
         Story,
+        None,
     }
 
     public enum PlayerMode
@@ -137,45 +125,19 @@ namespace Gmds {
         Programmer,
     }
 
-    public enum TechRare
+    public enum TechType
     {
         N,  //  普通
         R, //  稀有
     }
 
-    public enum TechType
+    public enum DevType
     {
-        // System
-        SpecialNarrative=0,
-        Reference,
-        Iteration,
-        DeckDesign,
-        SLG,
-        RPGRole,
-        // Data
-        Charge,
-        DND,
-        MOBA,
-        RPGGrow,
-        SLGEconomy,
-        Combat,
-
-        // Level
-        Boss,
-        Minigame,
-        FPS,
-        Map,
-        Environment,
-        Puzzle,
-        //Story
-        Ironic,
-        Rougelike,
-        SocialPhilosophy,
-        History,
-        RPGStory,
-        BackgroundDesign,
+        System = 0,
+        Data, 
+        Level,
+        Story,
     }
-
 
     // 玩家与NPC的开发阶段
     public enum DevStage
