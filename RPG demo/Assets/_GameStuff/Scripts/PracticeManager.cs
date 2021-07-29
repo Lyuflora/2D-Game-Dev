@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Gmds{
 
@@ -8,16 +10,30 @@ public class PracticeManager : MonoBehaviour
 {
     public List<Tech> m_TechAttained = new List<Tech>();
     public static PracticeManager m_Instance;
-    public GameObject techObject;
+
     public GameObject m_TechsParent;
+
+    [Header("UI")]
+    public TMP_Text playerNameText;
+    public TMP_Text playerAgeText;
+    public TMP_Text playerSalaryText;
+
     public int[] m_Exp = new int[12];
+
+    public int[] m_WeekPractice = new int[3];
 
     private void Awake()
     {
         m_Instance = this;
         m_TechAttained.Clear();
     }
-
+    private void Start()
+    {
+        for(int i = 0; i < 24; i++)
+        {
+            m_TechsParent.transform.GetChild(i).GetComponent<Button>().interactable = false;
+        }
+    }
     public void LearnTech(int techId)
     {
         // todo
@@ -33,17 +49,15 @@ public class PracticeManager : MonoBehaviour
 
     public void ReloadTechPanel()
     {
-        ClearOldTechProfile();
-        var rectTransform = techObject.GetComponent<RectTransform>();
-        float yOffset = rectTransform.sizeDelta.y;
-
-        float origionX = m_TechsParent.transform.position.x;
-        float origionY = m_TechsParent.transform.position.y;
+        //ClearOldTechProfile();
+        playerNameText.text = PlayerStatus.m_Instance.GetPlayerName();
+        playerAgeText.text = PlayerStatus.m_Instance.GetPlayerAge();
+        playerSalaryText.text = PlayerStatus.m_Instance.GetPlayerSalary();
+        
         for (int i = 0; i < m_TechAttained.Count; i++)
         {
-            var p = Instantiate(techObject, new Vector3(origionX, origionY + yOffset * i, 0), Quaternion.identity);
-            p.transform.parent = m_TechsParent.transform;
-            p.GetComponent<TechProfile>().RefreshTech(m_TechAttained[i]);
+            int childID = m_TechAttained[i].techID;
+            m_TechsParent.transform.GetChild(childID).GetComponent<Button>().interactable = true;              
         }
     }
     public void ClearOldTechProfile()

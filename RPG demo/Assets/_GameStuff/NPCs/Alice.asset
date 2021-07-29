@@ -12,15 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407a504a7c0ae046aa7cd966ea24058, type: 3}
   m_Name: Alice
   m_EditorClassIdentifier: 
-  name: Alice
+  NPCname: Alice
   age: 16
   img: {fileID: 21300000, guid: 05ccd53483a554ca9b31f685fa76154a, type: 3}
+  portrait: {fileID: 21300000, guid: c784f0adc2ce544be915fc26a2b4b510, type: 3}
   description: 
-  job: 2
+  job: 1
   level: 2
-  states:
-    Body: 3
-    Willpower: 5
-    Mind: 5
-    Knowledge: 3
-    Practical: 3
+  stage: 0
+  status:
+    Body: 1
+    Willpower: 2
+    Mind: 3
+    Knowledge: 4
+    Practical: 5
+  techs:
+  - {fileID: 11400000, guid: 7e45033946d125749aaf5bb3540e3f21, type: 2}
+  - {fileID: 11400000, guid: f116801501017ab40b5bdcf2e695fc2e, type: 2}
+  - {fileID: 11400000, guid: f116801501017ab40b5bdcf2e695fc2e, type: 2}
+  dialogs:
+  - Hi
+  - wow
+  - hhhhh
+  - wwwww

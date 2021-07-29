@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ef4fb9da2a9134a8ae0deda641d3b1, type: 3}
   m_Name: Social-Bar
   m_EditorClassIdentifier: 
-  m_BlockName: 
+  m_BlockName: Social-Bar
   m_CG: {fileID: 21300000, guid: d44393819175a5a4fa827601e4b30735, type: 3}

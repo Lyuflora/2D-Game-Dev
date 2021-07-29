@@ -29,7 +29,9 @@ public class Skill : ScriptableObject
         if (SkillDesplayObject)
         {
             SkillDisplay SD = SkillDesplayObject.GetComponent<SkillDisplay>();
-            SD.m_SkillName.text = name;
+            
+            if(SD.m_SkillName)
+                SD.m_SkillName.text = name;
             //if (SD.skillDescription)
             //    SD.skillDescription.text = description;
             if (SD.m_BtSprite)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using TMPro;
 
 public class status : MonoBehaviour
 {
@@ -10,12 +11,10 @@ public class status : MonoBehaviour
     // 进度条
     public Slider slider;
     // 进度文本
-    Text text;
-    public GameObject percent;
+    public Text text;
     void Start()
     {
         slider = GetComponent<Slider>();
-        text = percent.GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -26,9 +25,10 @@ public class status : MonoBehaviour
             slider.value = progress;
         }
         text.text = (slider.value * 100).ToString("f0") + "%";
+
         //if () {
 
-            //slider.value += 0.1f;
+        //slider.value += 0.1f;
         //}
     }
 }

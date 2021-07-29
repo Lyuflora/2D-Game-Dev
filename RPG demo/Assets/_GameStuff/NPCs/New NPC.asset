@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407a504a7c0ae046aa7cd966ea24058, type: 3}
   m_Name: New NPC
   m_EditorClassIdentifier: 
-  name: 
+  NPCname: Stranger
   age: 0
+  img: {fileID: 0}
   description: 
   job: 0
   level: 0
+  stage: 0
   states:
     Body: 0
     Willpower: 0

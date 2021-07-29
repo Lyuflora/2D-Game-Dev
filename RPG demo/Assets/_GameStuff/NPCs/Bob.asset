@@ -12,15 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407a504a7c0ae046aa7cd966ea24058, type: 3}
   m_Name: Bob
   m_EditorClassIdentifier: 
-  name: Bob
+  NPCname: Bob
   age: 16
-  img: {fileID: 21300000, guid: f2e901e070fff48cda67e3f446d80e79, type: 3}
-  description: 
-  job: 3
+  img: {fileID: 21300000, guid: 3c64e30cbefbe4e768ef68d85c85061e, type: 3}
+  portrait: {fileID: 21300000, guid: ed14cc18e1e37449eb670f2613314102, type: 3}
+  description: sfassdfadsffdf
+  job: 2
   level: 2
-  states:
-    Body: 5
+  stage: 0
+  status:
+    Body: 2
     Willpower: 3
-    Mind: 3
-    Knowledge: 4
-    Practical: 5
+    Mind: 4
+    Knowledge: 5
+    Practical: 6
+  techs:
+  - {fileID: 11400000, guid: 7e45033946d125749aaf5bb3540e3f21, type: 2}
+  - {fileID: 11400000, guid: d3d2c52d319717741b67e30157370f8e, type: 2}
+  dialogs:
+  - dddddddddddd
+  - ffffffffffffffff
+  - sssssssssssss

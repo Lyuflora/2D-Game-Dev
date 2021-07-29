@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f7796bb6319a044a73280fcb3dd9cc, type: 3}
   m_Name: tech10
   m_EditorClassIdentifier: 
-  name: tech10
+  techname: 
+  techID: 10
   effect: effect, effec, teffecteffecteffect
   requirement: requirement, requirementrequirement,requirement
-  type: 10
   level: 1
-  rare: 1
-  id: 10
+  type: 10
   icon: {fileID: 21300000, guid: 58158aa874e40854688309243e614a95, type: 3}

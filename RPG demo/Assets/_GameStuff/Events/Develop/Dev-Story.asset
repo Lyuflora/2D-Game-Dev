@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963e5224ffab2364fa353a5cf6e37cf0, type: 3}
   m_Name: Dev-Story
   m_EditorClassIdentifier: 
-  m_Genre: 4
-  m_Type: 0
+  m_Genre: 1
+  m_Type: 12
   cg: {fileID: 21300000, guid: 739c439e1023ca34c877d190cc763640, type: 3}
   m_ButtonTexture: {fileID: 0}
+  m_DialogBlock: Dev-Data
   m_Possibility: 0
   m_isSuccess: 0
   dCoin: 0
@@ -25,3 +26,4 @@ MonoBehaviour:
   dMentalExp: 0
   type: 4
   icon: {fileID: 0}
+  m_Progress: 0

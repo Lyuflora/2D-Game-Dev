@@ -70,10 +70,10 @@ namespace Gmds {
     public enum EventGenre
     {
         Practice = 0,
-        Rest,
-        Social,
-        BaseDev,
         Dev,
+        Social,
+        Rest,
+        BaseDev,
     }
 
 // 二级分类
@@ -120,9 +120,9 @@ namespace Gmds {
 
     public enum NPCJob
     {
-        Designer = 0,
-        Artist,
-        Programmer,
+        设计师 = 0,
+        艺术家,
+        程序员,
     }
 
     public enum TechType
@@ -142,10 +142,10 @@ namespace Gmds {
     // 玩家与NPC的开发阶段
     public enum DevStage
     {
-        Brewing=0,  //  酝酿
-        Prototype,  //  原型
-        iteration,  //  迭代
-        Polishing,  //  完善
+        酝酿 = 0,  //  酝酿
+        原型,  //  原型
+        迭代,  //  迭代
+        完善,  //  完善
     }
 
     public enum DayStatus

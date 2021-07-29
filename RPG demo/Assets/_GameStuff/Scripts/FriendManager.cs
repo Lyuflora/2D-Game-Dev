@@ -26,8 +26,8 @@ namespace Gmds {
         }
         private void Start()
         {
-            ReloadFriendPanel(); 
-            ReloadFriendInfoList();
+            //ReloadFriendPanel(); 
+            //ReloadFriendInfoList();
 
         }
         public void ClearOldNPCProfile()
@@ -53,9 +53,10 @@ namespace Gmds {
             float origionY = m_NPCInfoParent.transform.position.y;
             for (int i = 0; i < m_FriendsArray.Count; i++)
             {
+                Debug.Log("Instantiate friend No." + i);
                 var p = Instantiate(infoObject, new Vector3(origionX, origionY + yOffset * i, 0), Quaternion.identity);
                 p.transform.parent = m_NPCInfoParent.transform;
-                p.GetComponent<NPCProfile>().RefreshProfile(m_FriendsArray[i]);
+                p.GetComponent<NPCProfile>().RefreshNPCProfile(m_FriendsArray[i]);
             }
         }
         public void ReloadFriendPanel()
@@ -68,11 +69,17 @@ namespace Gmds {
             float origionY = m_ProfileParent.transform.position.y;
             for (int i = 0; i < m_FriendsArray.Count; i++)
             {
-                var p = Instantiate(profileObject, new Vector3(origionX, origionY + yOffset * i, 0), Quaternion.identity);
+                var p = Instantiate(profileObject, m_ProfileParent.transform.position, Quaternion.identity);
                 p.transform.parent = m_ProfileParent.transform;
-                p.GetComponent<NPCProfile>().RefreshProfile(m_FriendsArray[i]);
+                p.GetComponent<NPCProfile>().RefreshNPCProfile(m_FriendsArray[i]);
             }
         }
+        public void ReloadNPCPanel(int friendID)
+        {
+            if (m_FriendsArray[friendID])
+                NPCPanel.m_Instance.RefreshNPCPanel(friendID);
+        }
+
         public void AddFriend(NPC npc)
         {
             m_FriendsArray.Add(npc);

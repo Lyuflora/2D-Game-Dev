@@ -11,6 +11,7 @@ namespace Gmds
         public EventType m_Type;
         public Sprite cg;
         public Texture2D m_ButtonTexture;
+        public string m_DialogBlock;
 
         // public Attribute m_AffectAttrib;
         public float m_Possibility;

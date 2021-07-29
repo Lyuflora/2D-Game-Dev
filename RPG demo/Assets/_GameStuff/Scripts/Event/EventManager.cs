@@ -44,7 +44,7 @@ namespace Gmds
         public void RefreshEvent()
         {
             // todo 事件变得不可用
-            EventGrid.m_Instance.m_AvailableEventBts = EventCatalog.m_Instance.m_EventButtonList;
+            EventGrid.m_Instance.m_AvailableEventBts = EventGrid.m_Instance.m_EventButtonList;
         }
 
         public void DisplayCG()
@@ -87,8 +87,6 @@ namespace Gmds
             }
             CalendarManager.m_Instance.NextDate();  // Update date text
             CalendarManager.m_Instance.StartDialogue(dayId);
-            
-
         }
 
         // 按钮-执行第一天（计算属性-显示对话）-Fungus call第二天（计算属性-显示对话）...
@@ -251,8 +249,9 @@ namespace Gmds
 
         internal void AddEventToWishlist(GameObject gameObject)
         {
-            if (toDay >= firstWeekDay + 7)
+            if (m_EventArray.Count >= 7)
             {
+                Debug.Log("本周已经安排完成了,无法添加");
                 return;
             }
             // 如果最后一个空闲天已经有日程规划
@@ -265,20 +264,22 @@ namespace Gmds
                 return;
             }
 
-            // 判断是否有预设的行动
-            // 如果有，则跳过，加入下一个最近的空闲天
-            while (CalendarManager.m_Instance.m_Calender[toDay].GetDayStatus() == DayStatus.Scheduled)
-            {
-                //加入空项
-                m_EventArray.Add(null);
-                // 跳转到下一天
-                toDay++;
-                if (toDay >= firstWeekDay + 7)
-                {
-                    return;
-                }
 
-            }
+            // 如果需要跳过
+            // 不需要了
+            //// 判断是否有预设的行动
+            //// 如果有，则跳过，加入下一个最近的空闲天
+            //while (CalendarManager.m_Instance.m_Calender[toDay].GetDayStatus() == DayStatus.Scheduled)
+            //{
+            //    //加入空项
+            //    m_EventArray.Add(null);
+            //    // 跳转到下一天
+            //    toDay++;
+            //    if (toDay >= firstWeekDay + 7)
+            //    {
+            //        return;
+            //    }
+            //}
 
 
 

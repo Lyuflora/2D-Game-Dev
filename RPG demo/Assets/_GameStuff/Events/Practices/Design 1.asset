@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Design 1
   m_EditorClassIdentifier: 
   m_Genre: 0
+  m_Type: 0
   cg: {fileID: 21300000, guid: 748330b6b20822741957dd2f6f96e37d, type: 3}
   m_ButtonTexture: {fileID: 0}
+  m_DialogBlock: Practice
   m_Possibility: 0
   m_isSuccess: 0
   dCoin: 2
@@ -24,7 +26,6 @@ MonoBehaviour:
   dMentalExp: 0
   difficulty: 0
   mode: 0
-  type: 1
   tech_R_No: 1
   tech_N_No: 8
   success_N: 1

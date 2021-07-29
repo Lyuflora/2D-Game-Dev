@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Genre: 2
   m_Type: 1
-  cg: {fileID: 21300000, guid: e6e801c6f297dea4a8268e5ba3d02c4f, type: 3}
+  cg: {fileID: 21300000, guid: 49b8018867e021f4b96bb4856829959f, type: 3}
   m_ButtonTexture: {fileID: 0}
+  m_DialogBlock: Social-Gym
   m_Possibility: 0
   m_isSuccess: 0
   dCoin: -1

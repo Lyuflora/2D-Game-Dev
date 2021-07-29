@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ef4fb9da2a9134a8ae0deda641d3b1, type: 3}
   m_Name: Social-Gym
   m_EditorClassIdentifier: 
-  m_BlockName: 
+  m_BlockName: Social-Gym
+  m_CG: {fileID: 21300000, guid: 49b8018867e021f4b96bb4856829959f, type: 3}

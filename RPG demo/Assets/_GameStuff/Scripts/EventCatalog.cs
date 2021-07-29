@@ -7,7 +7,7 @@ namespace Gmds{
 public class EventCatalog : MonoBehaviour
 {
     public static EventCatalog m_Instance;
-    public List<GameObject> m_EventButtonList;
+
     public List<BaseEvent> m_GuiEventList;
     void Awake()
     {

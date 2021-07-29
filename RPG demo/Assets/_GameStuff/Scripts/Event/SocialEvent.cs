@@ -36,12 +36,12 @@ namespace Gmds
             {
                 Debug.Log("添加好友成功");
                 FriendManager.m_Instance.AddFriend(npc);
-                Debug.Log("与" + npc.name + "成为好友");
+                Debug.Log("与" + npc.NPCname + "成为好友");
             }
             else
             {
                 Debug.Log("添加失败");
-                Debug.Log(npc.name + "拒绝了你的好友邀请");
+                Debug.Log(npc.NPCname + "拒绝了你的好友邀请");
             }
 
         }

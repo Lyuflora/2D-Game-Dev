@@ -9,6 +9,8 @@ namespace Gmds {
 class State
 {
     public string PlayerName;
+    public int PlayerAge;
+    public int PlayerSalary;
     public int PlayerCoin = 0;
     public int PlayerExp = 0;
     public int PlayerLvl = 0;
@@ -55,7 +57,6 @@ public class PlayerStatus : MonoBehaviour
 
     void LoadInitialData()
     {
-        m_BasicData.PlayerName = "nameeee";
             //PlayerPrefs.GetString("Name");
 
         // 从PlayerPrefs加载初始点数分配结果
@@ -138,5 +139,20 @@ public class PlayerStatus : MonoBehaviour
     {
         m_BasicData.Mental += mentalNum;
     }
-}
+
+    public string GetPlayerName()
+    {
+        return m_BasicData.PlayerName;
+    }
+
+    public string GetPlayerAge()
+    {
+        return m_BasicData.PlayerAge.ToString();
+    }
+
+    public string GetPlayerSalary()
+    {
+        return m_BasicData.PlayerSalary.ToString();
+    }
+    }
 }

@@ -9,13 +9,20 @@ namespace Gmds
     {
         static public EventGrid m_Instance;
         public List<GameObject> m_AvailableEventBts;    // 加载显示的事件按钮
-        public EventButton[] m_EventButtons;    //  按钮的外壳,todo
         public GameObject CalenderParent;   //   事件按钮的parent
 
         public GameObject m_DevEvParent;
         public GameObject m_PracEvParent;
         public GameObject m_SocialEvParent;
         public GameObject m_RestEvParent;
+
+        public List<GameObject> m_EventButtonList;
+        public List<GameObject> m_DevEventButtonList;
+        public List<GameObject> m_PracticeEventButtonList;
+        public List<GameObject> m_SocialEventButtonList;
+        public List<GameObject> m_RestEventButtonList;
+
+        public List<GameObject> m_ResultEventButtonList;
 
         public void ReloadCalender()
         {
@@ -39,8 +46,20 @@ namespace Gmds
             
         }
 
+        // todo
         public void ReloadEventButton()
         {
+            // 初始化时默认显示练习项目
+            for(int i = 0; i < 3; i++)
+            {
+                
+                int prac_id = PracticeManager.m_Instance.m_WeekPractice[i];
+                Debug.Log("显示练习" + prac_id);
+                GameObject pracBt = m_PracticeEventButtonList[prac_id];
+                var newItem = Instantiate(pracBt, m_ResultEventButtonList[i].gameObject.transform.position, Quaternion.identity);
+                newItem.transform.parent = m_PracEvParent.transform;
+            }
+
             float x = CalenderParent.transform.position.x;
             float y = CalenderParent.transform.position.y;
             float Xanchor = 60f;
@@ -52,16 +71,19 @@ namespace Gmds
                 var newItem = Instantiate(m_AvailableEventBts[i], new Vector3(x + Xanchor, y - Yoffset * (i - 1), 0), Quaternion.identity);
                 var type = newItem.GetComponent<EventButton>().m_Type;
                 Transform itemParent = CalenderParent.transform;
-                if (type==EventGenre.BaseDev|| type==EventGenre.Dev)
+                if (type == EventGenre.BaseDev || type == EventGenre.Dev)
                 {
                     itemParent = m_DevEvParent.transform;
-                }else if(type == EventGenre.Practice)
+                }
+                else if (type == EventGenre.Practice)
                 {
                     itemParent = m_PracEvParent.transform;
-                }else if (type == EventGenre.Social)
+                }
+                else if (type == EventGenre.Social)
                 {
                     itemParent = m_SocialEvParent.transform;
-                }else if (type == EventGenre.Rest)
+                }
+                else if (type == EventGenre.Rest)
                 {
                     itemParent = m_RestEvParent.transform;
                 }
@@ -70,8 +92,11 @@ namespace Gmds
                 {
                     newItem.transform.parent = itemParent;
                 }
-                newItem.transform.position = new Vector3(x + Xanchor+ itemParent.transform.position.x, y - Yoffset * (i - 1), 0);
+                newItem.transform.position = new Vector3(x + Xanchor + itemParent.transform.position.x, y - Yoffset * (i - 1), 0);
             }
+
+            // load "selected" event buttons
+            // 默认是三个练习（1 2 3）
         }
 
         void RefreshButtonProperties()

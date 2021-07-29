@@ -35,7 +35,7 @@ namespace Gmds
         public void OnEndDrag(PointerEventData eventData)
         {
             Debug.Log("Add Event");
-            EventManager.m_Instance.AddEventToWishlist(gameObject);
+            //EventManager.m_Instance.AddEventToWishlist(gameObject);
             canvasGroup.alpha = 1.0f;
             canvasGroup.blocksRaycasts = true;
         }

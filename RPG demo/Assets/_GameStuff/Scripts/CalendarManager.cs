@@ -38,6 +38,7 @@ namespace Gmds
         [Header("Flowchart")]
         public Fungus.Flowchart m_EventFlowchart;
         public string m_StartBlockName = "Start";
+        public string m_DefaultBlockName = "DefaultBlock";
 
         //[SerializeField]
         //private GameObject[] m_EventArray;  // 事件库
@@ -80,6 +81,7 @@ namespace Gmds
         {
             // Update date text
             m_DayNum += 1;
+            Debug.Log("Update Day: " + m_DayNum);
             if (m_DayNum == 31)
             {
                 m_DayNum = 1;
@@ -94,30 +96,50 @@ namespace Gmds
         public int GetCurrentDayId()
         {
             m_CurrentDay = m_DayNum + (m_MonthNum - 9) * 30-1 ;
+            Debug.Log("Get Current Day:" + m_CurrentDay);
             return m_CurrentDay;
         }
 
         public void StartDialogue(int dayId)
         {
-            // 根据预设日程
-            // 仅当天有固定事件，触发
-
+            // 根据日程，触发对话
             Debug.Log("Day " + m_DayNum + " "+ m_MonthNum + " "+dayId);
+            string dialog= m_DefaultBlockName;
             var today = m_Calender[dayId];
+            // 当天有预置事件
+            // 执行Calendar数组中当天的Dialogue成员
+            // 可自定义对话Block
+            // 最后一行为"CallHandleDay.."
             if (today.GetDayStatus() == DayStatus.Scheduled)
             {
-                string dialog = today.m_Dialogues[0].m_BlockName;
-                m_EventFlowchart.ExecuteBlock(dialog);
-                // 最后一行为"CallHandleDay.."
+                if (today.m_Dialogues.Length>0)
+                {
+                    if (today.m_Dialogues[0].m_BlockName != "")
+                    {
+                        dialog = today.m_Dialogues[0].m_BlockName;
+                    }
+                    else
+                    {
+                        dialog = m_DefaultBlockName;
+                    }
+                }
+                          
             }
             else
-            {
-                // 通过代码调用
-                bool waitForClick = true;
-                EventManager.m_Instance.CallHandleCurrentDay();
-                
+            {             
+                // 当天无预置事件，执行玩家自己添加的事件
+                // 通过代码直接调用日程对应的Dialogue
+                // 内容固定
+                if (EventManager.m_Instance.m_EventArray[dayId])
+                {
+                    dialog = EventManager.m_Instance.m_EventArray[dayId].m_DialogBlock;
+                }
+                else
+                {
+                    dialog = m_DefaultBlockName;
+                }
             }
-            //    dialogue.m_Dialogue.ExecuteBlock(m_StartBlockName);
+            m_EventFlowchart.ExecuteBlock(dialog);
             //    //EventFlowchart.SetBooleanVariable("Show", true);   // 设置变量
         }
 

@@ -61,7 +61,9 @@
   <ItemGroup>
     <Compile Include="Assets\_GameStuff\Scripts\GmdsManifest.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\UI\ItemSlot.cs" />
+    <Compile Include="Assets\script\status1.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\CalendarManager.cs" />
+    <Compile Include="Assets\script\chat1.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\Event\EventManager.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\UI\DragDrop.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\Event\RestEventButton.cs" />
@@ -74,17 +76,20 @@
     <Compile Include="Assets\_GameStuff\Scripts\EventGrid.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\Player\PublicMethods.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\NPC.cs" />
+    <Compile Include="Assets\script\status.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\Player\AttribManager.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\CameraMotor.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\PanelManager.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\Event\DevEvent.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\Event\RestEvent.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\Event\PracticeEvent.cs" />
+    <Compile Include="Assets\script\RatingSlider.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\EventButton.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\TechProfile.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\Event\DailyEvent.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\EventCatalog.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\SkillDisplay.cs" />
+    <Compile Include="Assets\NPCPanel.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\PracticeManager.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\SkillManager.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\Player\Attribute.cs" />
@@ -99,11 +104,10 @@
     <Compile Include="Assets\_GameStuff\Scripts\Event\BaseEvent.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\DialogueDescriptor.cs" />
     <Compile Include="Assets\_GameStuff\Scripts\Player\PlayerStatus.cs" />
-    <Compile Include="Assets\script\status.cs" />
-    <Compile Include="Assets\script\status1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Artwork\Blur.shader" />
+    <None Include="Assets\Artwork\Font\常用汉字库 3500.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
